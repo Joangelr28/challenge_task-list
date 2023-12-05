@@ -1,4 +1,4 @@
-import TasksReducer, { addTask } from "./TasksReducer"
+import TasksReducer, { addTask } from "../stores/TasksReducer"
 
 describe("taskReducer", () => {
   it("should add a task to the state", () => {
@@ -33,6 +33,4 @@ describe("taskReducer", () => {
     expect(state2.data).toHaveLength(2)
     expect(state2.data).toEqual(expect.arrayContaining(mockTasks))
   })
-
-  // Add more test cases to cover different scenarios if needed
 })

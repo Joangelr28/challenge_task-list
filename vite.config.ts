@@ -13,8 +13,9 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    environment: "jsdom",
+    environment: "happy-dom",
     setupFiles: "src/setupTests",
+    includeSource: ["src/**/*.{js,ts,jsx,tsx}"],
     mockReset: true,
   },
 })

@@ -1,4 +1,4 @@
-import ListReducer, { ListState, fetchListData } from "./ListReducer"
+import ListReducer, { ListState, fetchListData } from "../stores/ListReducer"
 
 describe("listReducer", () => {
   const initialState: ListState = {
