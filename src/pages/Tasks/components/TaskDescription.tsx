@@ -1,5 +1,6 @@
 import React from "react"
 import { TaskData } from "../../../interfaces/TaskData"
+import "./TaskDescription.scss"
 
 interface TaskDescriptionProps {
   data: TaskData
@@ -8,11 +9,8 @@ interface TaskDescriptionProps {
 export default function TaskDescription(props: TaskDescriptionProps) {
   const { data } = props
   return (
-    <div
-      className="flex flex-col  py-1 px-6 gap-1 border-2 w-full"
-      key={data.title + data.description}
-    >
-      <p className="font-bold italic text-2xl">{data.title}</p>
+    <div className="description-content" key={data.title + data.description}>
+      <p>{data.title}</p>
       <span>{data.description}</span>
     </div>
   )

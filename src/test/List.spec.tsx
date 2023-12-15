@@ -1,14 +1,14 @@
-// EL PROYECTO NO QUISO CORRER LAS PRUEBAS QUE ESTABAN HECHAS EN .TSX
-
-/*import { Provider } from "react-redux"
+import { Provider } from "react-redux"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { render, screen } from "@testing-library/react"
 import List from "../pages/List/List"
 import { store } from "../app/store"
+import { MemoryRouter } from "react-router-dom"
+import { vi } from "vitest"
 
-jest.mock("../../app/hooks", () => ({
-  useAppSelector: jest.fn(),
-  useAppDispatch: jest.fn(),
+vi.mock("../app/hooks", () => ({
+  useAppSelector: vi.fn(),
+  useAppDispatch: vi.fn(),
 }))
 
 describe("List Component", () => {
@@ -22,16 +22,18 @@ describe("List Component", () => {
       data: mockListData,
       status: "idle",
     })
-    ;(useAppDispatch as jest.Mock).mockReturnValue(jest.fn())
+    ;(useAppDispatch as jest.Mock).mockReturnValue(vi.fn())
 
     render(
-      <Provider store={store}>
-        <List />
-      </Provider>,
+      <MemoryRouter>
+        <Provider store={store}>
+          <List />
+        </Provider>
+      </MemoryRouter>,
     )
 
-    expect(screen.getAllByText("Element 1")).toBeInTheDocument()
-    expect(screen.getByText("Element 2")).toBeInTheDocument()
+    expect(screen.getAllByText("1 - Element 1")).toBeDefined()
+    expect(screen.getByText("2 - Element 2")).toBeDefined()
   })
 
   it("renders loading state correctly", async () => {
@@ -39,14 +41,16 @@ describe("List Component", () => {
       data: [],
       status: "loading",
     })
+    ;(useAppDispatch as jest.Mock).mockReturnValue(vi.fn())
 
     render(
-      <Provider store={store}>
-        <List />
-      </Provider>,
+      <MemoryRouter>
+        <Provider store={store}>
+          <List />
+        </Provider>
+      </MemoryRouter>,
     )
 
-    expect(screen.getByText("LOADING...")).toBeInTheDocument()
+    expect(screen.getByText("LOADING...")).toBeDefined()
   })
 })
-*/

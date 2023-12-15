@@ -1,14 +1,14 @@
-// EL PROYECTO NO QUISO CORRER LAS PRUEBAS QUE ESTABAN HECHAS EN .TSX
-
-/*import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { useAppSelector } from "../app/hooks"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { Provider } from "react-redux"
 import Tasks from "../pages/Tasks/Tasks"
 import { store } from "../app/store"
+import { MemoryRouter } from "react-router-dom"
 
-jest.mock("../../app/hooks", () => ({
-  useAppSelector: jest.fn(),
+vi.mock("../app/hooks", () => ({
+  useAppSelector: vi.fn(),
+  useAppDispatch: vi.fn(),
 }))
 
 describe("Tasks Component", () => {
@@ -19,11 +19,14 @@ describe("Tasks Component", () => {
     ]
 
     ;(useAppSelector as jest.Mock).mockReturnValue(mockTasks)
+    ;(useAppDispatch as jest.Mock).mockReturnValue(vi.fn())
 
     render(
-      <Provider store={store}>
-        <Tasks />
-      </Provider>,
+      <MemoryRouter>
+        <Provider store={store}>
+          <Tasks />
+        </Provider>
+      </MemoryRouter>,
     )
 
     expect(screen.getByText("Task 1")).toBeInTheDocument()
@@ -32,19 +35,20 @@ describe("Tasks Component", () => {
 
   it("shows the Add Task button and modal", () => {
     ;(useAppSelector as jest.Mock).mockReturnValue([])
+    ;(useAppDispatch as jest.Mock).mockReturnValue(vi.fn())
 
     render(
-      <Provider store={store}>
-        <Tasks />
-      </Provider>,
+      <MemoryRouter>
+        <Provider store={store}>
+          <Tasks />
+        </Provider>
+      </MemoryRouter>,
     )
 
     expect(screen.getByText("+ Add Task")).toBeInTheDocument()
 
-    expect(screen.queryByText("AddTaskModal")).toBeNull()
-
     fireEvent.click(screen.getByText("+ Add Task"))
 
-    expect(screen.getByText("AddTaskModal")).toBeInTheDocument()
+    expect(screen.getByText("Title")).toBeInTheDocument()
   })
-})*/
+})
